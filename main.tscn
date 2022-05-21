@@ -7,6 +7,9 @@
 [ext_resource path="res://levels/obstacle.png" type="Texture" id=5]
 
 [node name="main" type="Node2D"]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="level1" type="Node" parent="."]
 
@@ -57,9 +60,7 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 visible = false
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
-[node name="player" parent="." groups=[
-"player",
-] instance=ExtResource( 3 )]
+[node name="player" parent="." groups=["player"] instance=ExtResource( 3 )]
 position = Vector2( 108.528, 242.682 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
@@ -94,6 +95,7 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 1000, 640 )
 region_filter_clip = true
+
 [connection signal="body_entered" from="level1/obstacles/hurtZone" to="level1/obstacles/hurtZone" method="_on_zone_body_enter"]
 [connection signal="body_exited" from="level1/obstacles/hurtZone" to="level1/obstacles/hurtZone" method="_on_zone_body_exit"]
 [connection signal="body_entered" from="level1/obstacles/healZone" to="level1/obstacles/healZone" method="_on_zone_body_enter"]

@@ -30,6 +30,7 @@ func _physics_process(delta):
 	
 	move_and_slide(velocity)
 
+
 func hurt(amount):
 	health-=amount
 	#esto podría ir en un setter
@@ -43,4 +44,3 @@ func hurt(amount):
 	elif health > 100:
 		health = 100
 	emit_signal("health_change",health)
-
