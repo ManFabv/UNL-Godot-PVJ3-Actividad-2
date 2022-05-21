@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://levels/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://obstacles/damagezone.gd" type="Script" id=2]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://HUD/hud.gd" type="Script" id=4]
 [ext_resource path="res://levels/obstacle.png" type="Texture" id=5]
+[ext_resource path="res://player/player_click_to_move.gd" type="Script" id=6]
 
 [node name="main" type="Node2D"]
 __meta__ = {
@@ -62,6 +63,7 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="player" parent="." groups=["player"] instance=ExtResource( 3 )]
 position = Vector2( 108.528, 242.682 )
+script = ExtResource( 6 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
 remote_path = NodePath("../../Camera2D")
