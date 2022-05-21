@@ -1,19 +1,6 @@
-extends KinematicBody2D
+extends PlayerBase
 
-export (float) var SPEED = 160
-export (float) var MAX_HEALTH = 100
-
-onready var health = MAX_HEALTH
-
-var dead = false
 var velocity : Vector2 = Vector2()
-
-signal health_change
-signal im_dead
-
-func _ready():
-	emit_signal("health_change",health)
-
 
 func _input(event):
 	velocity = event_move(velocity, event)
@@ -22,21 +9,6 @@ func _input(event):
 func _physics_process(_delta):
 	# warning-ignore:return_value_discarded
 	move_and_slide(velocity)
-
-
-func hurt(amount):
-	health-=amount
-	#esto podría ir en un setter
-	if health <= 0:
-		if !dead:
-			emit_signal("im_dead")
-			dead = true
-			set_physics_process(false) 
-		health = 0
-		return
-	elif health > 100:
-		health = 100
-	emit_signal("health_change",health)
 
 
 func event_move(motion : Vector2, event : InputEvent) -> Vector2:
