@@ -14,20 +14,14 @@ func _ready():
 	emit_signal("health_change",health)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var motion = Vector2()
 	
-	if (Input.is_action_pressed("move_up")):
-		motion += Vector2(0, -1)
-	if (Input.is_action_pressed("move_bottom")):
-		motion += Vector2(0, 1)
-	if (Input.is_action_pressed("move_left")):
-		motion += Vector2(-1, 0)
-	if (Input.is_action_pressed("move_right")):
-		motion += Vector2(1, 0)
+	var velocity = Vector2()
 	
-	var velocity = motion.normalized()*SPEED
+	velocity = polling_move(motion)
 	
+# warning-ignore:return_value_discarded
 	move_and_slide(velocity)
 
 
@@ -44,3 +38,18 @@ func hurt(amount):
 	elif health > 100:
 		health = 100
 	emit_signal("health_change",health)
+
+
+func polling_move(movement : Vector2) -> Vector2:
+	if (Input.is_action_pressed("move_up")):
+		movement += Vector2(0, -1)
+	if (Input.is_action_pressed("move_bottom")):
+		movement += Vector2(0, 1)
+	if (Input.is_action_pressed("move_left")):
+		movement += Vector2(-1, 0)
+	if (Input.is_action_pressed("move_right")):
+		movement += Vector2(1, 0)
+		
+	movement = movement.normalized()*SPEED
+	
+	return movement
