@@ -27,6 +27,10 @@ func set_health(new_health) -> void:
 			emit_signal("im_dead")
 			dead = true
 			set_physics_process(false)
+			return
 	elif health > MAX_HEALTH:
 		health = MAX_HEALTH
+		return
+	
+	if !dead:
 		emit_signal("health_change",health)

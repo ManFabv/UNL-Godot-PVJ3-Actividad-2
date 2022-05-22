@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.9, 7.9 )
 
-[node name="player" type="KinematicBody2D"]
+[node name="player_polling_move" type="KinematicBody2D" groups=["player"]]
 collision/safe_margin = 0.01
 script = ExtResource( 1 )
 
